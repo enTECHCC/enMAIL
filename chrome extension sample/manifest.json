@@ -1,0 +1,23 @@
+{
+	"name": "Highlight some phrases",
+	"description": "Hightlight some pre defined text from websql database after page loads",
+	"version": "0.1",
+	"permissions": [
+		"tabs", "<all_urls>"
+	],
+	
+
+	"content_scripts": [{
+		"matches": [
+			"http://mail.google.com/*",
+			"https://mail.google.com/*"
+		],
+		"js": ["jquery-3.1.1.min.js", "myscript.js"]
+	}],
+
+	"browser_action": {
+		"default_icon": "icon.png"
+	},
+	
+	"manifest_version": 2
+}
