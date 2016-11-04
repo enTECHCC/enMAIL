@@ -29,6 +29,31 @@ function updateButtons(){
 		}
 	}
 }
+function updateNavigationBar(){
+	var navItems = document.body.querySelectorAll("div[role=navigation] span");
+	var i;
+	for(i=1; i < navItems.length;i++){
+		if(navItems[i].innerText != "inbox"){
+			navItems[i].style.visibility = "hidden";
+		}
+	}
+}
+//this function modifies the inbox
+function updateInboxTable(){
+	var inboxTblRows = document.body.querySelector("div[role=main] div[role=tabpanel] table").rows;
+	var index;
+	for(index = 0; index < inboxTblRows.length; index++){
+		var tds = inboxTblRows[index].querySelectorAll("td");
+		var i = 0;
+		//hide everything till the subject - the star, flags, etc
+		while(tds[i].innerText == ""){
+			tds[i].style.visibility = "hidden";
+			i++;
+		}
+		//hide the message details
+		//tds[i].style.visibility = "hidden";
+	}
+}
 
 function emailLoaded(){
 	updateButtons();
@@ -36,6 +61,8 @@ function emailLoaded(){
 
 function emailListLoaded(){
 	updateButtons();
+	updateNavigationBar();
+	updateInboxTable();
 }
 
 $( document ).ready( function() {
