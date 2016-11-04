@@ -1,6 +1,10 @@
 
 //comment out the debugger if you dont want chrome to set a breakpoint automatically
 debugger;
+var isGmailLoaded = false;
+var listPage = true;
+var observer1;
+var observer2;
 console.log('script started');
 
 //fuction that replaces the wording of compose button to 'new'
@@ -26,23 +30,23 @@ function updateButtons(){
 	}
 }
 
-function gmailLoaded(){
+function emailLoaded(){
 	updateButtons();
 }
 
-function numButtonsChanged(){
+function emailListLoaded(){
 	updateButtons();
 }
 
 $( document ).ready( function() {
 
-	var isGmailLoaded = false;
 	//create a mutation observer to observe any additions of nodes
-	var observer1 = new MutationObserver(function() {
+	observer1 = new MutationObserver(function() {
 		if(document.getElementById("loading").style.display == "none"){
 			isGmailLoaded = true;
 			observer1.disconnect();
-			gmailLoaded();
+			emailListLoaded();
+			observer2.observe(targetNode, observerConfig);
 		}
 		    
 	});
@@ -56,19 +60,22 @@ $( document ).ready( function() {
 	//start observing the body of the document for addition of nodes
 	var targetNode = document.body;
 	observer1.observe(targetNode, observerConfig);
-	//after loading, check for changes when opening emails,etc
-	if(isGmailLoaded == true){
-		var numButtons = 0;
-		//create an observer to record changes to number of buttons
-		var observer2 =  new MutationObserver(function(){
-			var currentNumBtns = document.querySelectorAll("div[role=button]").length;
-			if(currentNumBtns != numButtons){
-				//fire buttons changed event
-				numButtonsChanged();
+	
+	//create an observer to detect switch between email list and email
+	observer2 =  new MutationObserver(function(){
+		
+		if(document.body.querySelector("div[role=main] table[role=presentation]") == null){
+			if(listPage!=true){
+				listPage = true;
+				emailListLoaded();
 			}
-		})
-		observer2.observe(targetNode, observerConfig);
-	}
+		}else if(listPage != false){
+			listPage = false;
+			emailLoaded();
+		}
+	})
+		
+	
 	});
 
 
