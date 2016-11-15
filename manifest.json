@@ -12,7 +12,8 @@
 			"http://mail.google.com/*",
 			"https://mail.google.com/*"
 		],
-		"js": ["jquery-3.1.1.min.js", "myscript.js"]
+		"js": ["jquery-3.1.1.min.js", "myscript.js"],
+		"css" : ["styles.css"]
 	}],
 
 	"browser_action": {
