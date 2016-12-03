@@ -30,12 +30,26 @@ function updateButtons(){
 	}
 }
 
+// Removes actions checkboxes; starring, selecting, important
+function removeSideActions() {
+  $(".k0vOLb").hide(); // first three table columns
+  $(".Ci").hide();
+  $(".y5").hide();
+  $(".oZ-x3.xY").hide(); // checkbox
+  $("td.oZ-x3.xY.aid").hide(); //checkbox
+  $("td.apU.xY").hide(); //star
+  $("td.WA.xY").hide(); //important
+  console.log("remove side actions ran");
+}
+
 function emailLoaded(){
 	updateButtons();
+  removeSideActions();
 }
 
 function emailListLoaded(){
 	updateButtons();
+  removeSideActions();
 }
 
 $( document ).ready( function() {
