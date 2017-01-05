@@ -26,7 +26,19 @@ function updateButtons(){
 		}else if(buttons[i].querySelector("span[role=checkbox]") != null){
 			buttons[i].remove();
 			console.log('checkbox button removed');
-		}
+		//find newer mails button (left arrow button)
+        }else if(buttons[i].getAttribute("data-tooltip") == "Newer"){
+            //remove arrow image
+            buttons[i].querySelector("img").remove();
+            //insert the word newer as a label for the button
+            buttons[i].querySelector("span").textContent = "Newer";
+        //find older mails button (right arrow button)
+        }else if(buttons[i].getAttribute("data-tooltip") == "Older"){
+            //remove arrow image
+            buttons[i].querySelector("img").remove();
+            //insert the word older as a label for the button
+            buttons[i].querySelector("span").textContent = "Older";
+        }
 	}
 }
 
