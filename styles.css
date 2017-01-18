@@ -3,7 +3,7 @@
   font-size: 100% !important;
 }
 
-td.yX {
+td.yX { /*spacing out the table rows*/
   padding-top: 20px !important;
   padding-bottom: 20px !important;
 }
