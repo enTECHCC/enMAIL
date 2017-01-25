@@ -1,19 +1,38 @@
-
 .xy {
-  font-size: 100% !important;
+    font-size: 100% !important;
 }
 
-td.yX { /*spacing out the table rows*/
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
+td.yX {
+    /*spacing out the table rows*/
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
 }
 
 body {
-  font-size: 20px;
+    font-size: 20px;
 }
+
 
 /* edits labels on the newer and older buttons */
 .amF {
     color: black;
-    padding: 0px 8px 0px;
+    padding: 10px !important;
+}
+
+
+/*edit size of buttons for newer and older*/
+.T-I-awG {
+    padding: 10px !important;
+}
+
+.T-I {
+    font-size: 20px !important;
+}
+
+
+/* edits new mail button */
+.z0 .T-I {
+    margin-top: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
