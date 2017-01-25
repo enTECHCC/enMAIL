@@ -7,6 +7,15 @@ var observer1;
 var observer2;
 console.log('script started');
 
+function replaceImageWithText(className, newLabel) {
+	var imageToDelete = document.getElementsByClassName(className);
+	if (imageToDelete.length > 0) {
+		var parentElem = imageToDelete[0].parentNode;
+		parentElem.removeChild(imageToDelete[0]);
+		parentElem.innerHTML = newLabel;
+	}
+}
+
 //fuction that replaces the wording of compose button to 'new'
 function updateButtons(){
 	//get all buttons on the page
@@ -16,27 +25,10 @@ function updateButtons(){
 	}
 
 	// Remove archive, spam and delete button on the email view
-	var deleteImage =  document.getElementsByClassName("ar9 T-I-J3 J-J5-Ji");
-	if (deleteImage.length > 0) {
-		var deleteImageParent = deleteImage[0].parentNode;
-		deleteImageParent.removeChild(deleteImage[0]);
-		deleteImageParent.innerHTML = "Delete";
-	}
-	
-	var spamImage =  document.getElementsByClassName("asl T-I-J3 J-J5-Ji");
-	if (spamImage.length > 0) {
-		var spamImageParent = spamImage[0].parentNode;
-		spamImageParent.removeChild(spamImage[0]);
-		spamImageParent.innerHTML = "Mark Spam";
-	}
-	
-	var archiveImage = document.getElementsByClassName("ar8 T-I-J3 J-J5-Ji");
-	if (archiveImage.length > 0) {
-		var archiveImageParent = archiveImage[0].parentNode;
-		archiveImageParent.removeChild(archiveImage[0]);
-		archiveImageParent.innerHTML = "Archive";
-	}
-	
+	replaceImageWithText("ar9 T-I-J3 J-J5-Ji", "Delete");
+	replaceImageWithText("asl T-I-J3 J-J5-Ji", "Mark Spam");
+	replaceImageWithText("ar8 T-I-J3 J-J5-Ji", "Archive");
+
 	var i = 0;
 	//iterate through the buttons
 	for(i=0; i < buttons.length; i++){
