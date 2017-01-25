@@ -7,9 +7,11 @@ var observer1;
 var observer2;
 console.log('script started');
 
+
 //fuction that replaces the wording of compose button to 'new'
 function updateButtons(){
-	//get all buttons on the page
+	//console.log("updated buttons!")
+    //get all buttons on the page
 	var buttons = document.querySelectorAll("div[role=button]");
 	if(buttons.length == 0){
 		return;
@@ -25,19 +27,25 @@ function updateButtons(){
 		//remove checkbox button	
 		}else if(buttons[i].querySelector("span[role=checkbox]") != null){
 			buttons[i].remove();
-			console.log('checkbox button removed');
+			//console.log('checkbox button removed');
 		//find newer mails button (left arrow button)
         }else if(buttons[i].getAttribute("data-tooltip") == "Newer"){
             //remove arrow image
-            buttons[i].querySelector("img").remove();
-            //insert the word newer as a label for the button
-            buttons[i].querySelector("span").textContent = "Newer";
+            var img = buttons[i].querySelector("img");
+            if(img != null) { 
+                buttons[i].querySelector("img").remove();
+                //insert the word newer as a label for the button
+                buttons[i].querySelector("span").textContent = "Newer";
+            }
         //find older mails button (right arrow button)
         }else if(buttons[i].getAttribute("data-tooltip") == "Older"){
             //remove arrow image
-            buttons[i].querySelector("img").remove();
-            //insert the word older as a label for the button
-            buttons[i].querySelector("span").textContent = "Older";
+            var img = buttons[i].querySelector("img");
+            if(img != null) {
+                buttons[i].querySelector("img").remove();
+                //insert the word older as a label for the button
+                buttons[i].querySelector("span").textContent = "Older";
+            }
         }
 	}
 }
@@ -60,12 +68,21 @@ function emailLoaded(){
 }
 
 function emailListLoaded(){
-	updateButtons();
-  removeSideActions();
+    updateButtons();
+    //attach listeners to everything
+    var buttons = document.querySelectorAll("*");
+    for(var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function() { 
+            //console.log("button clicked");
+            setTimeout(updateButtons, 500);
+        });
+    }
+    removeSideActions();
 }
 
 $( document ).ready( function() {
-
+    
+    
 	//create a mutation observer to observe any additions of nodes
 	observer1 = new MutationObserver(function() {
 		if(document.getElementById("loading").style.display == "none"){
@@ -100,9 +117,8 @@ $( document ).ready( function() {
 			emailLoaded();
 		}
 	})
-		
-	
-	});
+});
+
 
 
 
