@@ -9,18 +9,22 @@ td.yX { /*spacing out the table rows*/
 }
 
 div.pH.a9q {
+	/* Important buttons on the left side of the email list */
 	display: none;
 }
 
 span.aXw.T-KT {
+	/* Star buttons on the left side of the email list */
 	display: none;
 }
 
 div.oZ-jc.T-Jo.J-J5-Ji {
+	/* Checkbox buttons on the left side of the email list */
 	display: none;
 }
 
 div.pH-A7.a9q {
+	/* Unimportant buttons on the left side of the email list */
 	display: none;
 }
 
